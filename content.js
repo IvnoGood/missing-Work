@@ -1,4 +1,4 @@
-const observer = new MutationObserver((mutations) => {
+const observer = new MutationObserver(async (mutations) => {
   const y = document.getElementsByClassName("liste-imbriquee")[0];
   if (y) {
     async function fetchData() {
@@ -21,20 +21,31 @@ const observer = new MutationObserver((mutations) => {
         }
 
         const data = await response.json();
-        console.log(data);
+        /* console.log(data); */
+        return data;
       } catch (error) {
         console.error("Error fetching data:", error);
       }
     }
+    let data = await fetchData();
 
-    fetchData();
+    /* data = data.data; */
+
+    const extractedData = Object.entries(data.data).map(([key, value]) => {
+      console.log(`Key: ${key}, Value:`, value);
+      return {
+        matiere: value.matiere,
+        date: value.date,
+        contenu: value.contenu,
+      };
+    });
+
+    // Destructure the first (and only) item in the array
+    const [{ matiere, date, contenu }] = extractedData;
+
+    console.log(matiere, date, contenu);
 
     // Call the function
-    console.log(fetchData());
-
-    const matiere = "SVT";
-    const date = "06/01";
-    const contenu = "Casser les burnes";
     const widget = document.createElement("div");
     widget.classList.add("widget-extension");
     widget.textContent = `Devoir de ${matiere} pour le ${date}: ${contenu}`;
