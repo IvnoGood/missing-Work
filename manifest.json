@@ -3,6 +3,14 @@
     "name": "Modify CSS and HTML",
     "version": "0.1.0",
     "description": "Lateral blog post demo extension",
+    "content_security_policy": "script-src 'self' https://www.gstatic.com https://www.googleapis.com; object-src 'self'; connect-src 'self' http://localhost:5000;",
+    "browser_action": {
+        "default_popup": "index.html"
+    },
+    "permissions": [
+        "http://localhost:5000/*",
+        "<all_urls>"
+    ],
     "content_scripts": [
         {
             "css": [

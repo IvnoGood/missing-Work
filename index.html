@@ -1,11 +1,41 @@
 <!DOCTYPE html>
 <html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Document</title>
-</head>
-<body>
-    
-</body>
+    <style>
+      main {
+        display: flex;
+        flex-direction: column;
+        width: 150px;
+      }
+      input[type="text"] {
+        width: 90px;
+      }
+    </style>
+  </head>
+  <body>
+    <main>
+      <label for="matiere-selector"
+        >Matière:
+
+        <select name="matiere" id="matiere-selector">
+          <option value="🧬 SVT">🧬 SVT</option>
+          <option value="➗ Maths">➗ Maths</option>
+          <option value="🔫 Anglais">🔫 Anglais</option>
+        </select>
+      </label>
+      <label for="">
+        date
+        <input type="date" name="date" id="date-selector" />
+      </label>
+      <label for="">
+        contenu
+        <input type="text" id="contenu" />
+      </label>
+      <button id="submit-button">Submit</button>
+    </main>
+  </body>
+  <script type="module" src="./index.js"></script>
 </html>
