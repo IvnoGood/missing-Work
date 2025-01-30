@@ -2,7 +2,8 @@ const observer = new MutationObserver(async (mutations) => {
   const y = document.getElementsByClassName("liste-imbriquee")[0];
   if (y) {
     async function fetchData() {
-      const url = "http://localhost:5000/get-db";
+      const url =
+        "https://missing-work-endpoint-68px8fq1u-ivnogoods-projects.vercel.app/get-db";
       const headers = {
         "Content-Type": "application/json",
       };
@@ -29,29 +30,23 @@ const observer = new MutationObserver(async (mutations) => {
     }
     let data = await fetchData();
 
-    /* data = data.data; */
-
-    const extractedData = Object.entries(data.data).map(([key, value]) => {
+    Object.entries(data.data).map(([key, value]) => {
       console.log(`Key: ${key}, Value:`, value);
-      return {
-        matiere: value.matiere,
-        date: value.date,
-        contenu: value.contenu,
-      };
+      var divElement = document.getElementById(key);
+      if (divElement != null) {
+        console.log("Element exists");
+      } else {
+        console.log("Element does not exist");
+
+        const widget = document.createElement("div");
+        widget.id = key;
+        widget.classList.add("widget-extension");
+        widget.textContent = `Devoir de ${value.matiere} pour le ${value.date}: ${value.contenu}`;
+        y.appendChild(widget);
+      }
     });
 
-    // Destructure the first (and only) item in the array
-    const [{ matiere, date, contenu }] = extractedData;
-
-    console.log(matiere, date, contenu);
-
-    // Call the function
-    const widget = document.createElement("div");
-    widget.classList.add("widget-extension");
-    widget.textContent = `Devoir de ${matiere} pour le ${date}: ${contenu}`;
-
-    y.appendChild(widget);
-    observer.disconnect(); // Stop observing once the element is found
+    observer.disconnect();
   }
 });
 
