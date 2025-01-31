@@ -3,42 +3,91 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Document</title>
+    <title>Beautiful Form</title>
     <style>
+      * {
+        box-sizing: border-box;
+        margin: 0;
+        padding: 0;
+      }
+
+      body {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        height: 100vh;
+        background: url("background.png");
+        background-size: contain;
+        font-family: "Arial", sans-serif;
+      }
+
       main {
+        width: 300px;
+        background: white;
+        padding: 20px;
+        border-radius: 10px;
+        box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.1);
         display: flex;
         flex-direction: column;
-        width: 150px;
+        gap: 15px;
       }
-      input[type="text"] {
-        width: 90px;
+
+      label {
+        display: flex;
+        flex-direction: column;
+        font-weight: bold;
+        color: #333;
+      }
+
+      select,
+      input {
+        margin-top: 5px;
+        padding: 8px;
+        border: 1px solid #ccc;
+        border-radius: 5px;
+        font-size: 14px;
+      }
+
+      button {
+        width: 100%;
+        padding: 10px;
+        border: none;
+        border-radius: 5px;
+        background: #2c9b73;
+        color: white;
+        font-size: 16px;
+        cursor: pointer;
+        transition: 0.3s;
+      }
+
+      button:hover {
+        background: #1b7c53;
       }
     </style>
   </head>
   <body>
     <main>
-      <label for="matiere-selector"
-        >Matière:
-
+      <label for="matiere-selector">
+        Matière:
         <select name="matiere" id="matiere-selector">
           <option value="🧬 SVT">🧬 SVT</option>
           <option value="➗ Maths">➗ Maths</option>
           <option value="🔫 Anglais">🔫 Anglais</option>
         </select>
       </label>
-      <label for="">
-        date
+
+      <label for="date-selector">
+        Date:
         <input type="date" name="date" id="date-selector" />
       </label>
-      <label for="">
-        contenu
-        <input type="text" id="contenu" />
+
+      <label for="contenu">
+        Contenu:
+        <input type="text" id="contenu" placeholder="Enter text..." />
       </label>
+
       <button id="submit-button">Submit</button>
     </main>
   </body>
   <script type="module" src="./index.js"></script>
 </html>
-
-
-

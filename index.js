@@ -50,6 +50,9 @@ document.getElementById("submit-button").addEventListener("click", () => {
   if (matiere != "" && date != "" && contenu != "") {
     writeUserData(matiere, date, contenu, uuid);
     console.log("ok");
+    document.getElementById("matiere-selector").value = "🧬 SVT";
+    document.getElementById("contenu").value = "";
+    document.getElementById("date-selector").valueAsDate = new Date();
   } else {
     console.log("not ok");
     alert("All fields should be filled");

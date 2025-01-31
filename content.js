@@ -1,5 +1,5 @@
 const observer = new MutationObserver(async (mutations) => {
-  const y = document.getElementsByClassName("liste-imbriquee")[0];
+  const y = document.getElementById("GInterface.Instances[2]_colonne_0");
   if (y) {
     async function fetchData() {
       const url =
@@ -28,10 +28,25 @@ const observer = new MutationObserver(async (mutations) => {
         console.error("Error fetching data:", error);
       }
     }
-    let data = await fetchData();
+    const data = await fetchData();
+
+    const container = document.createElement("section");
+
+    container.innerHTML = `<div class="widget">
+      <header>
+        <h2 style="color: #ab4d70 !important">
+          <span>Devoirs Manquants</span>
+        </h2>
+      </header>
+
+      <div class="devoirsmanquantsDevoirs">
+
+      </div>
+    </div>`;
+
+    y.insertBefore(container, y.firstChild);
 
     Object.entries(data.data).map(([key, value]) => {
-      console.log(`Key: ${key}, Value:`, value);
       var divElement = document.getElementById(key);
       if (divElement != null) {
         console.log("Element exists");
@@ -40,9 +55,21 @@ const observer = new MutationObserver(async (mutations) => {
 
         const widget = document.createElement("div");
         widget.id = key;
-        widget.classList.add("widget-extension");
-        widget.textContent = `Devoir de ${value.matiere} pour le ${value.date}: ${value.contenu}`;
-        y.appendChild(widget);
+        widget.className = "devoirsmanquantscontainer";
+        widget.innerHTML = `
+      <div class="devoirsmanquantsTitre">
+        <h3 class="devoirsmanquantsMatiere">${value.matiere}</h3>
+        <p>&nbsp; pour le: ${value.date}</p>
+      </div>
+      <p class="devoirsmanquantsContenu">${value.contenu}</p>
+    `;
+
+        // Append the widget to the container
+        const devoirsContainer = document.querySelector(
+          ".devoirsmanquantsDevoirs"
+        );
+
+        devoirsContainer.appendChild(widget);
       }
     });
 

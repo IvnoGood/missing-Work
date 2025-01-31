@@ -1,7 +1,22 @@
-.widget-extension {
-    background-color: lightblue;
-    padding: 10px;
-    margin: 10px;
-    border: 1px solid #ccc;
-    border-radius: 5px;
+.devoirsmanquantscontainer {
+    padding: 0.8rem;
+}
+
+.devoirsmanquantsMatiere {
+    font-size: var(--taille-m);
+}
+
+.devoirsmanquantsTitre {
+    display: flex;
+    flex-direction: row;
+    margin-bottom: 5px;
+    font-size: var(--taille-m);
+}
+
+.devoirsmanquantsDevoirs {
+    padding: 0.8rem 1.6rem;
+}
+
+.devoirsmanquantsContenu {
+    font-size: 1.3rem;
 }
