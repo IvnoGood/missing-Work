@@ -22,10 +22,11 @@ const observer = new MutationObserver(async (mutations) => {
         }
 
         const data = await response.json();
-        /* console.log(data); */
+        console.log(data);
         return data;
       } catch (error) {
         console.error("Error fetching data:", error);
+        return "Pas de travail";
       }
     }
     const data = await fetchData();
@@ -45,6 +46,13 @@ const observer = new MutationObserver(async (mutations) => {
     </div>`;
 
     y.insertBefore(container, y.firstChild);
+
+    if (data == "Pas de travail") {
+      document.querySelector(".devoirsmanquantsDevoirs").innerHTML =
+        '<p style="text-align:center;font-weight: 600;">Pas de travil oublié &#129300;</p>';
+      observer.disconnect();
+      return;
+    }
 
     Object.entries(data.data).map(([key, value]) => {
       var divElement = document.getElementById(key);
