@@ -49,7 +49,7 @@ const observer = new MutationObserver(async (mutations) => {
 
     if (data == "Pas de travail") {
       document.querySelector(".devoirsmanquantsDevoirs").innerHTML =
-        '<p style="text-align:center;font-weight: 600;">Pas de travil oublié &#129300;</p>';
+        '<p style="text-align:center;font-weight: normal;color: #ab4d70;font-size: var(--taille-m);" >Pas de travil oublié</p>';
       observer.disconnect();
       return;
     }
